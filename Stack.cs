@@ -13,16 +13,19 @@ namespace cSharp_DSStackQueue
         private int[] S;
         private int top;
         private int max;
+    
         public Stack(int size)
         {
             S = new int[size];
             top = -1;
             max = size;
+            
+
         }
 
         public void StackAdd(int n)
         {
-            if (top == max - 1)
+            if (IsFull())
             {
                 Console.WriteLine("Stack is Full");
                 return;
@@ -35,7 +38,7 @@ namespace cSharp_DSStackQueue
 
         public int StackRemove()
         {
-            if (top == -1)
+            if (IsEmpty())
             {
                 Console.WriteLine("Stack is empty");
                 return -1;
@@ -49,7 +52,7 @@ namespace cSharp_DSStackQueue
 
         public void StackPeek()
         {
-            if (top == -1)
+            if (IsEmpty())
             {
                 Console.WriteLine("The stack is empty");
             }
@@ -61,19 +64,30 @@ namespace cSharp_DSStackQueue
         }
         public void Display()
         {
-            if (top == -1)
+            if (IsEmpty())
             {
                 Console.WriteLine("Stack is Empty");
                 return;
             }
             else
             {
+                Console.WriteLine("Stack: ");
                 for (int i = 0; i <= top; i++)
                 {
                     Console.WriteLine("Item[" + (i + 1) + "]: " + S[i]);
                 }
             }
         }
+        private bool IsFull()
+        {
+            return top == max - 1; 
+        }
+
+        private bool IsEmpty()
+        {
+            return top == -1;
+        }
+       
 
         
     }
