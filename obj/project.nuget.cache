@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "W0d/wzO0bIcI2brw7HUmYLd6xbMMZqY+cTBv2ttGSvLqdHcWhsuoiCQbZM2XtNhIi/0GCCKdCM7qa/iJ/ugOew==",
+  "dgSpecHash": "l/1Jot6lNcshAltUJ82Up8YIQvitZlp2REhHCwU/5kvUQI2xENcwm3UG3JRoLRWjlmxFalu1mmdHwAg3cUsiEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Desktop\\code-TRA\\git-starter\\cSharp-DSStackQueue\\cSharp-DSStackQueue.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\moham\\Source\\Repos\\cSharp-DS-Stack-Queue\\cSharp-DSStackQueue.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\moham\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.20\\microsoft.windowsdesktop.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.20\\microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.20\\microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.20\\microsoft.netcore.app.host.win-x64.6.0.20.nupkg.sha512"
+  ],
   "logs": []
 }
