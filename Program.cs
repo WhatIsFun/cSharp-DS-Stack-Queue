@@ -1,4 +1,6 @@
-﻿namespace cSharp_DSStackQueue
+﻿using System.Linq.Expressions;
+
+namespace cSharp_DSStackQueue
 {
     internal class Program
     {
@@ -25,31 +27,26 @@
 
 
 
-            Queue Q = new Queue(5);
-            Q.QueueAdd(10);
-            Q.QueueAdd(20);
-            Q.QueueAdd(30);
-            Q.QueueAdd(40);
-            Q.QueueAdd(50);
-            Q.Display();
+            //Queue Q = new Queue(5);
+            //Q.QueueAdd(10);
+            //Q.QueueAdd(20);
+            //Q.QueueAdd(30);
+            //Q.QueueAdd(40);
+            //Q.QueueAdd(50);
+            //Q.Display();
 
-            Q.QueueRemove();
-            Q.Display();
+            //Q.QueueRemove();
+            //Q.Display();
 
-            Q.QueuePeek();
-            Q.QueueRemove();
-            Q.Display();
+            //Q.QueuePeek();
+            //Q.QueueRemove();
+            //Q.Display();
 
-            char[] exp = { '{', '(', ')', '}', '[', ']', '{', '}' };
-
-            //if (AreBracketsBalanced(exp))
-            //{
-            //    Console.WriteLine("Balanced ");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Not Balanced ");
-            //}
+            // Stack Task:
+            //string[] exp = new string[3];
+            BalancedBrackets.IsBalanced("[()]{}{[()()]()}");
+            BalancedBrackets.IsBalanced("[()]{}{[()()]()}");
+            BalancedBrackets.IsBalanced("[(])");
         }
 
         // Task:
@@ -64,91 +61,51 @@
         // there is a closing ‘]’ before the closing ‘(‘
         public class BalancedBrackets
         {
-            public int top = -1;
-            public char[] items = new char[100];
-            public void ItemPush(char e)
+            static bool AreBracketsBalanced(string exp)
             {
-                if (IsFull())
-                {
-                    Console.WriteLine("Stack is Full");
-                    return;
-                }
-                else
-                {
-                    items[++top] = e;
-                }
-            }
-            public int ItemPop()
-            {
-                if (IsEmpty())
-                {
-                    Console.WriteLine("Stack is empty");
-                    return -1;
-                }
-                else
-                {
-                    char element = items[top];
-                    Console.WriteLine("Poped element is: " + items[top]);
-                    top--;
-                    return element;
-                }
-            }
-            public static Boolean isMatchingPair(char character1, char character2)
-            {
-                if (character1 == '(' && character2 == ')') { return true; }
-                else if (character1 == '{' && character2 == '}') { return true; }
-                else if (character1 == '[' && character2 == ']') { return true; }
-                else
-                {
-                    return false;
-                }
-            }
-            public static Boolean AreBracketsBalanced(char[] exp)
-            {
-                Stack<char> st = new Stack<char>(); // stack
-
-                //  To check matching brackets
+                Stack<char> stack = new Stack<char>();
                 for (int i = 0; i < exp.Length; i++)
                 {
-                    // If the i is a starting bracket then push it
-                    if (exp[i] == '{' || exp[i] == '(' || exp[i] == '[')
-                        st.Push(exp[i]);
-
-                    //  If i is an closing bracket then pop from stack and check if the popped bracket is
-                    //  a matching pair
-                    if (exp[i] == '}' || exp[i] == ')' || exp[i] == ']')
+                    char a = exp[i];
+                    if (a == '(' || a == '[' || a == '{')
                     {
-
-                        // If ending bracket without a pair then return false
-                        if (st.Count == 0)
-                        {
-                            return false;
-                        }
-
-                        else if (!isMatchingPair(st.Pop(), exp[i]))
-                        {
-                            return false;
-                        }
+                        stack.Push(a);
+                        continue;
+                    }
+                    if (stack.Count == 0)
+                        return false;
+                    char check;
+                    switch (a)
+                    {
+                        case ')':
+                            check = stack.Pop();
+                            if (check == '{' || check == '[')
+                                return false;
+                            break;
+                        case '}':
+                            check = stack.Pop();
+                            if (check == '(' || check == '[')
+                                return false;
+                            break;
+                        case ']':
+                            check = stack.Pop();
+                            if (check == '(' || check == '{')
+                                return false;
+                            break;
                     }
                 }
-
-                if (st.Count == 0)
-                    return true; // balanced
+                return (stack.Count == 0);
+            }
+            public static void IsBalanced(string input)
+            {
+                if (AreBracketsBalanced(input))
+                {
+                    Console.WriteLine($"The '{input}' is balanced ");
+                }
                 else
                 {
-                    // not balanced
-                    return false;
+                    Console.WriteLine($"The '{input}' is not balanced ");
                 }
-            }
-
-            private bool IsFull()
-            {
-                return top == 99;
-            }
-
-            private bool IsEmpty()
-            {
-                return top == -1;
             }
         }
     }
